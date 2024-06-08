@@ -7,33 +7,14 @@ import org.springframework.web.client.RestTemplate;
 public class CompetitionService {
     private final RestTemplate restTemplate;
     private final String BASE_URL = "https://api.football-data.org/v4";
+    //private String apiKey = "96a428ad93b640e9b9218c3f8fa9cc9e";
 
     public CompetitionService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    public Object getCompetition(String id) {
-        String url = BASE_URL + "/competitions/" + id + "/";
-        return restTemplate.getForObject(url, Object.class);
-    }
-
-    public Object getAllCompetitions(String areas) {
-        String url = "";
-        if(areas != null){
-         url = BASE_URL + "/competitions/?areas=" + areas;
-        } else{
-            url = BASE_URL + "/matches/";
-        }
-        return restTemplate.getForObject(url, Object.class);
-    }
-
-    public Object getStandings(String id, String season, String matchday) {
-        String url = BASE_URL + "/competitions/" + id + "/standings?season=" + season + "&matchday=" + matchday;
-        return restTemplate.getForObject(url, Object.class);
-    }
-
-    public Object getMatches(String id, String matchday) {
-        String url = BASE_URL + "/competitions/" + id + "/matches?matchday=" + matchday;
+    public Object getMatches() {
+        String url = BASE_URL + "/matches";
         return restTemplate.getForObject(url, Object.class);
     }
 
@@ -47,4 +28,3 @@ public class CompetitionService {
         return restTemplate.getForObject(url, Object.class);
     }
 }
-
